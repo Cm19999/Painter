@@ -1,13 +1,11 @@
 package com.company;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.lang.Math;
 
 public class Main {
     public static void main(String[] args) {
 
-        String hello= "Helloooo";
         Scanner myObj = new Scanner(System.in);
         System.out.println("What type of paint do you want? Out of: ");
         for (Paint paints : Paint.values()) {
@@ -36,8 +34,30 @@ public class Main {
     }
     public static void costCalculatorArea(String paintName){
         Scanner myObj3 = new Scanner(System.in);
-        System.out.println("What area do you need to be painted?");
-        double area = Double.parseDouble(myObj3.nextLine());
+        double totalArea = 0.0;
+        System.out.println("Do you know the total area of the walls? (Y or N)");
+        String wallKnowledge =myObj3.nextLine();
+
+        double area =0.0;
+        if (wallKnowledge =="Y"){
+        area = Double.parseDouble(myObj3.nextLine());
+        }
+        else{
+            boolean unknownWalls = true ;
+            while (unknownWalls) {
+                System.out.println("What is the area of the current wall?");
+                totalArea += Double.parseDouble(myObj3.nextLine());
+
+                System.out.println("Is that all of the walls?(Y or N)");
+                String wallsAnswer=myObj3.nextLine();
+                if (wallsAnswer.equals("Y")){
+                    unknownWalls = false;
+                    area = totalArea;
+                    continue;
+                }
+            }
+        }
+
 
         double areaPerLitre = 2.5;
         Paint paint = Paint.valueOf(paintName);
@@ -46,4 +66,5 @@ public class Main {
         System.out.println("The cost will be £" + paintCost*amountOfTins);
 
     }
+
 }
