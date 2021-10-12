@@ -6,8 +6,6 @@ import java.lang.Math;
 public class Main {
     public static void main(String[] args) {
 
-
-
         Scanner myObj = new Scanner(System.in);
         System.out.println("What type of paint do you want? Out of: ");
         for (Paint paints : Paint.values()) {
@@ -15,34 +13,52 @@ public class Main {
         }
         String paintName = myObj.nextLine();
 
-        Scanner myObj3 = new Scanner(System.in);
         System.out.println("Do you know how many tins you need?(Y or N)");
-        String answer = myObj3.nextLine();
-        System.out.println(answer);
+        String answer = myObj.nextLine();
 
-        if (answer.equals("Y") ){
-            Scanner myObj2 = new Scanner(System.in);
-            System.out.println("How many tins of paint do you need?");
-            int litres = Integer.parseInt(myObj2.nextLine());
-            costCalculatorTins(litres,paintName);
+        switch (answer) {
+            case "Y" -> costCalculatorTins(paintName);
+            case "N" -> costCalculatorArea(paintName);
         }
-        else {
-            Scanner myObj4 = new Scanner(System.in);
-            System.out.println("What area do you need to be painted?");
-            double area = Double.parseDouble(myObj4.nextLine());
-            costCalculatorArea(area,paintName);
-        }
-
 
     }
-    public static void costCalculatorTins(int litres,String paintName){
+    public static void costCalculatorTins(String paintName){
+        Scanner myObj2 = new Scanner(System.in);
+        System.out.println("How many tins of paint do you need?");
+        int litres = Integer.parseInt(myObj2.nextLine());
 
         Paint paint = Paint.valueOf(paintName);
         double paintCost = paint.getPaintCost();
         System.out.println("The cost will be £" + paintCost*litres);
 
     }
-    public static void costCalculatorArea(double area, String paintName){
+    public static void costCalculatorArea(String paintName){
+        Scanner myObj3 = new Scanner(System.in);
+        double totalArea = 0.0;
+        System.out.println("Do you know the total area of the walls? (Y or N)");
+        String wallKnowledge =myObj3.nextLine();
+
+        double area =0.0;
+        if (wallKnowledge =="Y"){
+        area = Double.parseDouble(myObj3.nextLine());
+        }
+        else{
+            boolean unknownWalls = true ;
+            while (unknownWalls) {
+                System.out.println("What is the area of the current wall?");
+                totalArea += Double.parseDouble(myObj3.nextLine());
+
+                System.out.println("Is that all of the walls?(Y or N)");
+                String wallsAnswer=myObj3.nextLine();
+                if (wallsAnswer.equals("Y")){
+                    unknownWalls = false;
+                    area = totalArea;
+                    continue;
+                }
+            }
+        }
+
+
         double areaPerLitre = 2.5;
         Paint paint = Paint.valueOf(paintName);
         double paintCost = paint.getPaintCost();
@@ -50,4 +66,5 @@ public class Main {
         System.out.println("The cost will be £" + paintCost*amountOfTins);
 
     }
+
 }
