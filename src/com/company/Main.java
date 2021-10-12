@@ -6,8 +6,7 @@ import java.lang.Math;
 public class Main {
     public static void main(String[] args) {
 
-
-
+        String hello= "Hello";
         Scanner myObj = new Scanner(System.in);
         System.out.println("What type of paint do you want? Out of: ");
         for (Paint paints : Paint.values()) {
