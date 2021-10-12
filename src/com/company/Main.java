@@ -13,25 +13,20 @@ public class Main {
             System.out.println(paints);
         }
         String paintName = myObj.nextLine();
-
-        Scanner myObj3 = new Scanner(System.in);
+        
         System.out.println("Do you know how many tins you need?(Y or N)");
-        String answer = myObj3.nextLine();
-        System.out.println(answer);
+        String answer = myObj.nextLine();
 
         if (answer.equals("Y") ){
-            Scanner myObj2 = new Scanner(System.in);
             System.out.println("How many tins of paint do you need?");
-            int litres = Integer.parseInt(myObj2.nextLine());
+            int litres = Integer.parseInt(myObj.nextLine());
             costCalculatorTins(litres,paintName);
         }
         else {
-            Scanner myObj4 = new Scanner(System.in);
             System.out.println("What area do you need to be painted?");
-            double area = Double.parseDouble(myObj4.nextLine());
+            double area = Double.parseDouble(myObj.nextLine());
             costCalculatorArea(area,paintName);
         }
-
 
     }
     public static void costCalculatorTins(int litres,String paintName){
