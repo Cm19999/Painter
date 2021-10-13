@@ -8,19 +8,17 @@ public class Main {
 
         int count = 0;
         double[][] costs= new double[3][3];
-        for (Paint paints : Paint.values()) {;
-            costs[count][1]=paints.getPaintCost();
-            System.out.print("Cost per litre £"+ paints.getPaintCost()+" ");
-            costs[count][2]=paints.getTinSize();
-            System.out.print("Tin size "+ paints.getTinSize());
-            ++count;
-            System.out.println();
-        }
 
         Scanner myObj = new Scanner(System.in);
         System.out.println("What type of paint do you want? Out of: ");
         for (Paint paints : Paint.values()) {
-            System.out.println(paints);
+            System.out.print(paints);
+            costs[count][1]=paints.getPaintCost();
+            System.out.print(" Cost per litre £"+ paints.getPaintCost()+" ");
+            costs[count][2]=paints.getTinSize();
+            System.out.print(" Tin size "+ paints.getTinSize());
+            ++count;
+            System.out.println();
         }
         String paintName = myObj.nextLine();
 
