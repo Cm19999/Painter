@@ -1,10 +1,18 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.lang.Math;
 
 public class Main {
+    public static ArrayList<String> Orders = new ArrayList<String>();
+    public static double totalCost=0.0;
+
     public static void main(String[] args) {
+
+        System.out.println(Main.Orders);
+
+        double totalCost=0.0;
 
         int count = 0;
         double[][] costs= new double[3][3];
@@ -34,12 +42,14 @@ public class Main {
     public static void costCalculatorTins(String paintName){
         Scanner myObj2 = new Scanner(System.in);
         System.out.println("How many tins of paint do you need?");
-        double litres = Integer.parseInt(myObj2.nextLine());
+        int litres = Integer.parseInt(myObj2.nextLine());
 
         Paint paint = Paint.valueOf(paintName);
         double paintCost = paint.getPaintCost();
         double tinSize = paint.getTinSize();
-        System.out.println("The cost will be £" + paintCost*(litres/tinSize));
+        double totalPaintCost=paintCost*(litres/tinSize);
+        System.out.println("The cost will be £" + totalPaintCost);
+        addOrder(paintName,litres,totalPaintCost);
 
     }
     public static void costCalculatorArea(String paintName){
@@ -78,4 +88,11 @@ public class Main {
 
     }
 
+    public static void addOrder(String paintName,int tins, double cost){
+
+        Main.Orders.add(new String(paintName+" "+tins+" tins £"+cost));
+        totalCost = totalCost + cost;
+        System.out.println("Your total cost is £"+totalCost);
+        System.out.println(Orders);
+    }
 }
